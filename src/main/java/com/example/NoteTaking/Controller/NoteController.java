@@ -30,4 +30,9 @@ public class NoteController {
     public Long save(@RequestBody NoteDto noteDto) {
         return service.save(noteDto);
     }
+
+    @PostMapping("/bulkSave")
+    public List<Long> bulkSave(@RequestBody List<NoteDto> notes) {
+        return service.bulkSave(notes);
+    }
 }

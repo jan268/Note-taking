@@ -27,4 +27,14 @@ public class NoteTakingService {
     public Long save(NoteDto noteDto) {
         return repository.save(new Note(noteDto.text())).getId();
     }
+
+    @Transactional
+    public List<Long> bulkSave(List<NoteDto> notes) {
+        return repository.saveAll(notes.stream()
+                        .map(note -> new Note(note.text()))
+                        .toList())
+                .stream()
+                .map(Note::getId)
+                .toList();
+    }
 }
