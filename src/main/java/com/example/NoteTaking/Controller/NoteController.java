@@ -18,21 +18,29 @@ public class NoteController {
 
     @GetMapping("/{id}")
     public NoteDto view(@PathVariable Long id) {
-        return service.view(id);
+        NoteDto view = service.view(id);
+        System.out.println(view);
+        return view;
     }
 
     @GetMapping("/all")
     public List<NoteDto> viewAll() {
-        return service.viewAll();
+        List<NoteDto> notes = service.viewAll();
+        System.out.println(notes);
+        return notes;
     }
 
     @PostMapping("/save")
     public Long save(@RequestBody NoteDto noteDto) {
-        return service.save(noteDto);
+        Long save = service.save(noteDto);
+        System.out.println("I saved with id: " + save);
+        return save;
     }
 
     @PostMapping("/bulkSave")
     public List<Long> bulkSave(@RequestBody List<NoteDto> notes) {
-        return service.bulkSave(notes);
+        List<Long> saved = service.bulkSave(notes);
+        System.out.println("I saved with ids: " + saved);
+        return saved;
     }
 }
